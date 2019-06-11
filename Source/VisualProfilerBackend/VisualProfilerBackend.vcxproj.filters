@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{a94d7ced-e853-4774-9f73-24b4938d6fe6}</UniqueIdentifier>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Headers">
+      <UniqueIdentifier>{797b9261-7a57-4d0d-aae1-b2fd418da2b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Source Files">
+      <UniqueIdentifier>{af824a2a-ad76-492b-be9b-48bcbf5b5255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Generated Files\Generated_I">
+      <UniqueIdentifier>{4398b8e8-f4bc-4e81-8535-9c05dd3c2945}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Metadata">
+      <UniqueIdentifier>{87c0e19d-41a2-4328-a63b-cbdf5be4638f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TracingProfiler">
+      <UniqueIdentifier>{3d7fcef4-287f-469b-9ff6-8334cc6e4c3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TracingProfiler">
+      <UniqueIdentifier>{8b641a15-f2c0-49d2-bd7e-20f77125892f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SamplingProfiler">
+      <UniqueIdentifier>{f3c0db22-4e60-4199-84e5-eae821ad9a38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SamplingProfiler">
+      <UniqueIdentifier>{b6f87f97-6206-44f4-a7d6-fa28d4d93799}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enums">
+      <UniqueIdentifier>{2a808745-b119-4e66-a58c-aae282d236e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CommonStuff">
+      <UniqueIdentifier>{d75af6fd-7c88-4cd9-92af-007be6f8f72f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CommonStuff">
+      <UniqueIdentifier>{d8a1bc9e-a8e4-4d02-a3a8-e7a075c09890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Metadata">
+      <UniqueIdentifier>{4a098e5a-6120-4a20-8092-8e72442437bf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Generated Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Generated Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualProfilerBackend_i.c">
+      <Filter>Generated Files\Generated_I</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualProfilerBackend.cpp">
+      <Filter>Generated Files\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CorProfilerCallbackBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyMetadata.cpp">
+      <Filter>Source Files\Metadata</Filter>
+    </ClCompile>
+    <ClCompile Include="MethodMetadata.cpp">
+      <Filter>Source Files\Metadata</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMetadata.cpp">
+      <Filter>Source Files\Metadata</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassMetadata.cpp">
+      <Filter>Source Files\Metadata</Filter>
+    </ClCompile>
+    <ClCompile Include="TracingProfiler.cpp">
+      <Filter>Source Files\TracingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplingProfiler.cpp">
+      <Filter>Source Files\SamplingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="StackWalker.cpp">
+      <Filter>Source Files\SamplingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadTimer.cpp">
+      <Filter>Source Files\CommonStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files\CommonStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplingCallTree.cpp">
+      <Filter>Source Files\SamplingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplingCallTreeElem.cpp">
+      <Filter>Source Files\SamplingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="TracingCallTree.cpp">
+      <Filter>Source Files\TracingProfiler</Filter>
+    </ClCompile>
+    <ClCompile Include="TracingCallTreeElem.cpp">
+      <Filter>Source Files\TracingProfiler</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dllmain.h">
+      <Filter>Generated Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Generated Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Generated Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualProfilerBackend_i.h">
+      <Filter>Generated Files\Generated_I</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Generated Files\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CorProfilerCallbackBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssemblyMetadata.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="MetadataBase.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="MethodMetadata.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMetadata.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassMetadata.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="TracingProfiler.h">
+      <Filter>Header Files\TracingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="CallTreeElemBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplingProfiler.h">
+      <Filter>Header Files\SamplingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="StackWalker.h">
+      <Filter>Header Files\SamplingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="CallTreeBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MetadataSerializer.h">
+      <Filter>Header Files\Metadata</Filter>
+    </ClInclude>
+    <ClInclude Include="MetadataTypes.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfilingDataTypes.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="CriticalSection.h">
+      <Filter>Header Files\CommonStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="SerializationBuffer.h">
+      <Filter>Header Files\CommonStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadTimer.h">
+      <Filter>Header Files\CommonStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\CommonStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualProfilerAccess.h">
+      <Filter>Header Files\CommonStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions.h">
+      <Filter>Header Files\Enums</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplingCallTree.h">
+      <Filter>Header Files\SamplingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplingCallTreeElem.h">
+      <Filter>Header Files\SamplingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="TracingCallTree.h">
+      <Filter>Header Files\TracingProfiler</Filter>
+    </ClInclude>
+    <ClInclude Include="TracingCallTreeElem.h">
+      <Filter>Header Files\TracingProfiler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VisualProfilerBackend.rc">
+      <Filter>Generated Files\Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VisualProfilerBackend.rgs">
+      <Filter>Generated Files\Resource Files</Filter>
+    </None>
+    <None Include="VisualProfilerBackend.def">
+      <Filter>Generated Files\Source Files</Filter>
+    </None>
+    <None Include="ReadMe.txt">
+      <Filter>Generated Files</Filter>
+    </None>
+    <None Include="SamplingProfiler.rgs">
+      <Filter>Generated Files\Resource Files</Filter>
+    </None>
+    <None Include="TracingProfiler.rgs">
+      <Filter>Generated Files\Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="VisualProfilerBackend.idl">
+      <Filter>Generated Files\Source Files</Filter>
+    </Midl>
+  </ItemGroup>
+</Project>

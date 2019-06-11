@@ -1,0 +1,19 @@
+﻿<View:MethodViewBase x:Class="VisualProfilerUI.View.SortedMethodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:VisualProfilerUI.View"
+             MouseEnter="MethodViewMouseEnter" 
+             MouseLeave="MethodViewOnMouseLeave"
+             MouseUp="MethodViewOnMouseUp"
+             MouseEnteredCommand="{Binding Path=ActivateCommand}" 
+             MouseLeftCommand="{Binding Path=DeactivateCommand}"
+             MouseUpCommand="{Binding Path=HighlightCommand}"  
+             BorderBrush="{Binding Path=BorderBrush}" 
+             BorderThickness="{Binding Path=BorderThinkness}"
+             Opacity="{Binding Path=Opacity}"
+             Width="25" 
+             Height="25">
+    <View:MethodViewBase.Resources>
+        <ImageBrush x:Key="background" ImageSource="/Images/method_background.png" TileMode="Tile"  ViewportUnits="Absolute" Viewport="0,0,4,4"  ></ImageBrush>
+    </View:MethodViewBase.Resources>
+    <Rectangle Fill="{StaticResource ResourceKey=background}" />
+</View:MethodViewBase>

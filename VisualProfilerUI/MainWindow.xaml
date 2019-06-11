@@ -1,6 +1,0 @@
-﻿<Window x:Class="VisualProfilerUI.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:VisualProfilerUI="clr-namespace:VisualProfilerUI"
-        xmlns:View="clr-namespace:VisualProfilerUI.View" Title="VisualProfilerUI" Height="350" Width="525">
-    <View:VisualProfilerUIView x:Name="visualProfilerUI"/>
-</Window>
