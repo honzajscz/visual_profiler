@@ -1,0 +1,99 @@
+\def \chapterPath {chapters/}
+\def \imagePath {images/}
+\def \imagePathAppx {images/Appendix/Screenshots/}
+
+
+
+\newcommand\TypeOfWork{Master's Thesis}
+\newcommand\WorkTitle{Performance Profiling for .NET Platform}
+\newcommand\FirstandFamilyName{Bc. Jan Vratislav}
+\newcommand\Month{January}
+\newcommand\Year{2012}
+\newcommand\Supervisor{Ing. Miroslav Uller}
+
+\newcommand\StudProgram{Electrical Engineering and Information Technology}
+\newcommand\StudBranch{Computer Science and Engineering}
+\newcommand\Faculty{Faculty of Electrical Engineering}
+\newcommand\Department{Department of Computer Science and Engineering}
+\newcommand\University{Czech Technical University, Prague}
+
+
+\def\ifndef#1{\expandafter\ifx\csname#1\endcsname\relax}
+
+\usepackage{enumerate}
+\usepackage{float}
+
+\usepackage[
+pdftitle={\WorkTitle},
+pdfauthor={\FirstandFamilyName},
+bookmarks=true,
+colorlinks=true,
+breaklinks=true,
+urlcolor=black,
+citecolor=black,
+linkcolor=black,
+unicode=true,
+]
+{hyperref}
+
+%preamble declarations
+\tolerance=500
+%raggedbottom
+\textwidth=158.4mm
+\textheight=241.3mm
+\oddsidemargin=5mm
+\evensidemargin=-5mm
+\topmargin=-0.3in
+\parskip=0pt
+\parindent=0pt
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\newcommand\coverpagestarts{
+
+	\setcounter{page}{3}
+	\pagenumbering{roman}
+	\thispagestyle{empty}
+	\begin{center}
+		%\large\sffamily
+		\large\rmfamily
+		\University\\
+		\Faculty\\
+		\vglue 40mm
+		\includegraphics[width=50mm]{\imagePath cvut_logo}
+		\vglue 30mm
+		{\large \TypeOfWork}\\
+		\bigskip	
+		{\Large\bf \WorkTitle}\\
+		\bigskip
+		\bigskip
+		{\Large\it \FirstandFamilyName}\\
+		\vfill		\item[Supervisor:]\ \Supervisor\\
+		\vglue 15mm
+		{Study Program: \StudProgram}\\
+		\bigskip
+		{Study Branch: \StudBranch}\\
+		\bigskip	
+		\Month\ \Year
+	\end{center}
+	\newpage
+}
+
+\newcommand\mainbodystarts{
+	\pagestyle{headings}
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	
+}
+
+%include any longer words that by default hyphenate improperly
+\hyphenation{di-men-sion-al ma-te-ma-ti-ky hard-ware trans-fer-able areas}
+
+
+%Chapters start at odd pages if you include:
+%\newcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+% into /usr/lib/texmf/tex/latex/latex/book.cls
+
+
+\parskip=5pt
+

@@ -1,0 +1,138 @@
+\chapter{Overview of Performance Profilers}
+
+In this chapter we present various characteristics and mechanisms of performance profilers and overview some contemporarily used profilers targeting the .NET platform.
+
+\label{01ProfModes}
+\section{Profiling modes}
+An application can be profiled in several ways that differ in the precision of their results and profiling overhead. 
+
+\subsection{Sampling profiling}
+In this mode, the profiler stops periodically every thread of a profilee\footnote{profiled process} and inspects method frames on its call stacks. The output snapshot is not an exact representation of the runtime conditions rather a statistical approximation, but the profiling overhead is very low and the profilee runs almost at full speed with minimum side effects, such as additional memory allocations, cache faults and context switches. The profiling overhead in the sampling mode does not depend on the number of methods called by the profilee opposed to other profiling modes. 
+
+The profiler cannot count the number of method calls. It can only count their occurrence on top of a stack. Method durations are computed purely based on gathered statistics. 
+
+No source code or a binary alternation is required. The runtime ability to stop execution to do a call stack snapshot or alternatively an interrupt instruction can be used.
+
+\subsection{Tracing profiling}
+This way of profiling relies on a runtime environment or some kind of hardware notification. The notification is performed when a method is entered or left. This method leads to accurate results that provide exact count of method calls and their durations. However, there is performance overhead. In addition, the overhead increases with the number of method calls and slows down the profilee.
+
+Similar to the sampling profiling, there are no changes to code or binaries required. The profiler has to only register callback methods for the entry/leave notifications with the runtime or the hardware profiling infrastructure.
+
+\subsection{Instrumentation profiling}
+Code or binaries of the profilee are modified by injection of arbitrary code or instructions in order to collect profiling data. This approach can have similar effects and results as the tracing profiling, but offers a lot more choice of what and how to profile. There are chances of alternation of the original profilee behavior or even introducing bugs.
+
+Instrumentation can be performed on every level of the software live-time (source, compilation, binary, runtime) and can be both manual, performed by a developer, as well as automatic, done by a compiler or a runtime environment.
+
+\section{Granularity of profiling}
+A profiler can measure profiling result on different levels of a program. Not every profiling approach can achieve any granularity due to its limitations. Speed of the profilee is always trade-off between granularity and accuracy. 
+
+\subsection{Line-by-line granularity}
+Line-by-line profiling is the most accurate method and most demanding. Every program statement is measured and analyzed. It brings precise result; however, the additional burden can alter the program's behavior.
+
+Such a fine granularity can be achieved only by the instrumentation profiling.
+
+\subsection{Method granularity} 
+Only information regarding an entire method run is collected. The lower overhead can improve performance of the profilee and still provide very informative results.
+
+This level of granularity is the only option for the sampling profilers and most types of the tracing profilers. The instrumentation profilers can operate in the method granularity mode.
+
+\subsection{Selective granularity}
+The profiled process can be filtered with combined levels of granularity, where some parts of code are monitored on the line-by-line level and others only on the method level or not at all in order to capture desired statistics with lowest possible overhead and highest possible accuracy.
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=1]{\imagePath 01profilingModesComparisonTable.png}
+		\caption{Profiling modes comparison}
+	\label{fig:01profilingModesComparisonTable}
+\end{figure}
+
+
+\section{Profiling results}
+During the process of profiling various kinds of data can be collected. For some application, it is sufficient to count the method hit count; for others a detailed call stack analysis is required. Again, the amount of result information places overhead on the profilee, in this case, primary on the memory (caches, pages...) and secondary on the CPU.
+
+\subsection{Time measurement}
+There are several different kinds of the program time measurement a profiler can provide. Not every profiling mode can provide every single measurement. Usually, measurement accuracy is counterweighted with computational complexity.
+
+\subsubsection*{Wall-clock time}
+The wall time measurement starts when a thread enters a method and ends when the thread leaves the method. The resulting time does not reflect if the method does useful computation or if it is in wait,  sleep or join state.
+
+\subsubsection*{User and kernel time}
+In comparison with the wall-clock time, the user and kernel time measurement count solely the time spent executing a method except the time spent by waiting, sleeping or joining.
+
+Every profiling mode is capable of both the wall time as well as the user and kernel time measurements, either by statistically distributing the program execution time over the method hit counts or by reading CPU registers or system performance counters.
+
+\subsection{Call trees}
+Relations among method calls allow the profiler to reconstruct a call tree. The call tree reveals hit count of functions and, more importantly, what function calls which function. This insight helps to find hot spots and understand the runtime conditions.
+Additional function parameter analysis is also possible, but at the cost of higher CPU and memory overhead. An example of a call tree is shown in the figure \ref{fig:01callGraphRedGate}.
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=.7]{\imagePath 01callGraphRedGate.png}
+		\caption{Red-Gate ANTS Profiler call graph}
+	\label{fig:01callGraphRedGate}
+\end{figure}
+
+Some profilers do not track calls hierarchy and they only record function hit count and duration. In this case, the call tree is referred by the term flat call tree.
+
+\section{Available .NET performance profilers}
+On the market, there are many various options in the field of .NET performance profiling. The commercial solutions offer many features and integration with other tools, however, not with Visual Studio in most cases. There are also a few open source alternatives.
+
+Unfortunately, we could not carry out deeper performance and features assessment of available profilers, since we did not have required financial and time resources for this challenging and very interesting undertaking.
+
+\subsection*{Commercial solutions}
+
+\subsection{JetBrains dotTrace}
+dotTrace profiles .NET Framework 1.0 to 4.0, Silverlight 4, or .NET Compact Framework 3.5. It offers partial integration with the Visual Studio and other JetBrains tools. All the profiling modes described above are supported and the profiling can run remotely.
+
+\textit{\href{http://www.jetbrains.org}{www.jetbrains.org}	}
+
+\subsection{Redgate ANTS Performance Profiler}
+This tool targets similar set of .NET applications as JetBrains dotTrace. In addition it offers SQL and I/O  profiling, live results, all the profiling modes and time schemas. 
+
+It offers basic integration with the Visual Studio and allows seeing code directly from the profiling tool. 
+
+\textit{\href{http://www.red-gate.com}{www.red-gate.com}}
+
+\subsection{EQATEC Profiler}
+There is no doubt that this profiler offers the widest targeting platform options. It can be used to profile virtually anything in the ''.NET world''. It uses unknown kind of instrumentation and thus the choice of the profiling mode is restricted, however it is configurable. A binary has to be modified before a profiling session.
+
+There is no integration with the Visual Studio whatsoever and it seems that the source code result overview cannot be displayed either.
+
+\textit{\href{http://www.eqatec.com}{www.eqatec.com}}
+
+\subsection{GlowCode}
+GlowCode is performance and memory profiler for Windows and .NET programmers who develop applications with C++ or any .NET Framework language. GlowCode helps to detect memory leaks and resource flaws, isolate performance bottlenecks, profile and tune code, trace real-time program execution, ensure code coverage, isolate boxing errors, identify excessive memory usage, and find hyperactive and loitering objects. It can be used for native, managed, and mixed code. \cite{01GlowCodeWeb} 
+
+The site did not mention anything about the Visual Studio integration. So we assume that it is not supported.
+
+
+\textit{\href{http://www.glowcode.com/}{www.glowcode.com}}
+
+\subsection{Visual Studio Profiler}
+This tool is integrated to Visual Studio and supports native and managed code profiling. It has the sampling and instrumenting profiling modes. It is shipped only with higher editions of Visual Studio.
+
+\subsection{Others}
+There are many other professional profiling solutions comparable to those mentioned above (among others, the Telerik JustTrace, the SpeedTrace Pro).
+
+It is a challenging task to pick the right solution for one's needs with the right licensing options.
+
+\subsection*{Open source solutions}
+The open source alternatives are not as numerous as the commercial ones.
+
+\subsection{SlimTune}
+SlimTune is a free profiler that offers advanced features such as remote profiling, 32-bit and 64-bit profiling, and live results. There is very little information available and user has to dive into the source code to find out about its inner mechanisms.
+
+\textit{\href{http://code.google.com/p/slimtune}{code.google.com/p/slimtune}}
+
+\subsection{Prof-It for C\#}
+Prof-It profiler for C\# introduces a unique way of profiling. It is a line-by-line instrumentation profiler with its own source viewer allowing import and profiling of Visual Studio projects. It presents results as an overlay over the source code and as a list of methods, blocks and classes. 
+
+Unfortunately, this project does not seem to be actively developed. 
+
+\textit{\href{http://dotnet.jku.at/projects/Prof-It/}{dotnet.jku.at/projects/Prof-It}}
+
+\section*{Summary}
+In this introduction, we have looked at and explained sampling, tracing and instrumenting profiling modes. Then we focused on profiling results and their granularity, mainly call trees and different kinds of inspected durations. In the end of the chapter, a short overview of current commercial and open-source scene was presented.
+
+ 
+

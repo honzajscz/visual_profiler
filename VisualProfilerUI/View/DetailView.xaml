@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="VisualProfilerUI.View.DetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             >
+
+    <StackPanel Orientation="Horizontal">
+
+        <StackPanel Margin="5 5 0 0">
+
+            <TextBlock Text="Method:"  />
+            <TextBlock Text="Class:"  />
+            <TextBlock Text="Source:"  />
+            <TextBlock Text="Value:"  />
+
+        </StackPanel>
+
+        <StackPanel Margin="5 5 0 0" >
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}" >
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="Foreground" Value="WhiteSmoke" />
+                </Style>
+            </StackPanel.Resources>
+
+          <TextBlock Text="{Binding Path=MethodName}"  />
+            <TextBlock Text="{Binding Path=Class}"   />
+          <TextBlock Text="{Binding Path=Source}"   />
+          <TextBlock Text="{Binding Path=Metrics}"   />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

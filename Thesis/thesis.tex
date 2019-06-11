@@ -1,0 +1,85 @@
+\documentclass[12pt,twoside,a4paper]{report}%two-page printing
+\usepackage[latin2]{inputenc}
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{color}
+\usepackage{listings}
+
+
+
+\definecolor{Brown}{cmyk}{0,0.81,1,0.60}
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+
+
+\input header.tex   %formatting, definitions, first page,...
+
+\begin{document}
+
+\coverpagestarts
+\cleardoublepage
+
+\input{\chapterPath _1declaration.tex}
+\cleardoublepage
+
+\input{\chapterPath _2acknowledgement.tex}
+\cleardoublepage
+
+\input{\chapterPath _3abstract.tex}
+\cleardoublepage
+
+
+
+\tableofcontents
+\cleardoublepage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{\protect\numberline{}{List of Figures}}
+\cleardoublepage
+
+\mainbodystarts 
+
+\input{\chapterPath 01introduction.tex}
+\cleardoublepage
+
+\input{\chapterPath 02performanceProfilers.tex}
+\cleardoublepage
+
+\input{\chapterPath 03performanceProfilingDotNet.tex}
+\cleardoublepage
+
+\input{\chapterPath 04VisualProfilerBackend.tex}
+\cleardoublepage
+
+\input{\chapterPath 05VisualProfilerAccess.tex}
+\cleardoublepage
+
+
+\input{\chapterPath 06VisualUI.tex}
+\cleardoublepage
+
+\input{\chapterPath 07TestingEvaluation.tex}
+\cleardoublepage
+
+\input{\chapterPath 08ConclusionAndFutureWork.tex}
+\cleardoublepage
+
+
+
+\bibliography{thesis}
+\bibliographystyle{alpha}
+\addcontentsline{toc}{chapter}{\protect\numberline{}{Bibliography}}
+\cleardoublepage
+
+
+\appendix
+\input{\chapterPath 09install.tex}
+\input{\chapterPath 10run.tex}
+\input{\chapterPath 11source.tex}
+\input{\chapterPath 12cdContent.tex}
+
+
+\end{document}

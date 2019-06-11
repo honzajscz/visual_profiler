@@ -1,0 +1,90 @@
+\chapter{Visual Profiler Access}
+The Visual Profiler Access is a bridge between the unmanaged and the managed worlds of the profiler. Its main role is to initiate the bidirectional inter-process communication (IPC), to start the profiled process and to prepare the received data to be passed further on.
+
+\section{Metadata, call trees and call tree elements}
+The data structure in the Visual Profiler Access is similar to the data structure of the Visual Profiler Backend, described in the chapter \ref{chap04:chapter}. For the matter of completeness we include the metadata, call trees and call tree elements inheritance hierarchy respectively in the figures \ref{fig:05Metadata} and \ref{fig:05accessStructure}
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=1]{\imagePath 05Metadata.png}
+		\caption{The metadata inheritance hierarchy closely resembles its counterpart from the chapter \ref{chap04:chapter}.}
+	\label{fig:05Metadata}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=1]{\imagePath 05accessStructure.png}
+		\caption{The call tree and call tree element inheritance hierarchy closely resembles their counterparts from the chapter \ref{chap04:chapter}.}
+	\label{fig:05accessStructure}
+\end{figure}
+
+The metadata derived classes use caches for every implementation of the base \texttt{MetadataBase} class. The caches are instances of the \texttt{System.Collections.Generic.Dictionary\textless uint, TMetadata\textgreater} class. The key to the dictionary is the metadata id. The metadata are added the cache as they come from the backend.
+
+The call trees and their call tree elements are not cached, however, they are matched with their corresponding cached metadata during the deserialization.
+
+\section{Deserialization}
+The profiling data comes from the named pipe in form of a byte stream. We added a handful of extension methods to the stream, the \texttt{System.IO.Stream} class, to deserialize the basic types, as depicted in the figure \ref{fig:05DeserializeActions}. The base classes of the call tree and the call tree elements classes define an abstract method for deserialization. This method had to be overridden in inherited classes to specify the deserialization logic that corresponds to the logic of the serialization in the backend.
+
+\begin{figure}
+	\centering
+		\includegraphics[scale=1]{\imagePath 05DeserializeActions.png}
+		\caption{The \texttt{DeserializationExtensions} class, which adds extension methods to the \texttt{System.IO.Stream} class in order to provide deserialization of the basic types. }
+	\label{fig:05DeserializeActions}
+\end{figure}
+
+\section{Visual profiler access API}
+The entry point to the profiler is the \texttt{ProfilerAccess\textless TCallTree\textgreater} class, see figure \ref{fig:05ProfilerAccess}. To create an instance of this class you have to:
+\begin{enumerate}
+
+\item specify the \texttt{TCallTree} generic parameter, the type of a call tree that will be used to store profiling data,
+
+\item provide an instance of the \texttt{System.Diagnostics.ProcessStartInfo} class that specifies the executable of the profiled application,
+
+\item pass one value of the \texttt{ProfilerTypes} enum that represents which profiler type to use in the backend,
+
+\item supply the update period for the result fetching and
+
+\item pass a reference to the \texttt{EventHandler\textless ProfilingDataUpdateEventArgs\textless TCallTree\textgreater\textgreater} delegate, which is called back when a profiling data update is successfully carried out.
+ 
+\end{enumerate}
+\begin{figure}
+	\centering
+		\includegraphics[scale=1]{\imagePath 05ProfilerAccess.png}
+		\caption{The communication logic classes}
+	\label{fig:05ProfilerAccess}
+\end{figure}
+
+When the \texttt{StartProfiler} method is called a bidirectional named pipe with asynchronous writing/reading is created. After that, two separate threads are spawned, the first - the command thread - sends commands to the backend and the second - the action thread - listens for actions from the backend. The actions and commands are as follows:
+
+\textbf{Actions:}
+\begin{itemize}	
+\item	SendingProfilingData - the bytes of the profiling data are being sent to the frontend
+\item	ProfilingFinished - the profiled application exits
+\item   Error - an unexpected situation
+\end{itemize}
+
+\textbf{Commands:}
+\begin{itemize}	
+\item	SendProfilingData - the request to send profiling data
+\end{itemize}
+
+Both the action and the command are only the counterparts to the actions and commands in the backend.
+
+The command thread sends in a specified period the \texttt{SendProfilingData} command to the backend. The action thread listens for the actions. When the \texttt{SendingProfilingData} action is received, the action thread deserializes the containing profiling data and passes them as the event argument to the specified callback delegate and executes them on a separate threadpool thread. This process is repeated until the profiling application exits.
+
+The \texttt{ProfilerAccess} class offers the \texttt{Wait} method that blocks a calling thread until the profiling is completed. This can be used to prevent a main application thread to exit prematurely.
+
+The \texttt{ProfilerAccess} class is responsible for the management of the communication, whereas \texttt{ProfilerCommunicatior} class handles the logic of the communication. This decoupling of responsibilities aids the unit testing.
+
+\section{Source code locations}
+Finding an exact position of profiled methods in source code is required for the projection of the profiling result to the Visual Studio code editor. 
+
+The data regarding source code, symbols, such as names of local variables and line numbers, are not stored in the compiled modules, because it would take too much space. During compilation a PBD\footnote{Program database, extension \texttt{.pdb}} file is generated. Its format is proprietary and it is mainly used for debugging purposes. The PDB files also store exact line numbers for methods.
+
+There is an unmanaged API from Microsoft called Debug Interface Access for reading PDB files. This API is somewhat verbose and according the samples it seems not easy to use. Luckily, Microsoft also runs an open source project called Common Compiler Infrastructure (CCI). The project is a set of libraries and APIs that allow analyzing or modifying .NET assemblies, modules and debugging PDB files. The CCI is actually a set of more projects, each targeting different areas. One of these projects is the CCI Metadata. It provides an API, among others, for reading and writing PDB files. The API needs for its correct functionality a valid PDB file for each managed assembly.
+
+We wrapped this API into two functions that accept metadata tokens of a method and return a path to a source code file and positions in it. The metadata from the profiler backend can easily be traced in the source code. 
+
+
+\section{Summary}
+In this chapter, we have looked at the \texttt{ProfilerAccess\textless TCallTree\textgreater} class and highlighted the most important parts of it. The class is more or less a wrapper for the unmanaged functionality of the Visual profiler backend. The source code to method mapping was introduced together with the notion of the PBD files.

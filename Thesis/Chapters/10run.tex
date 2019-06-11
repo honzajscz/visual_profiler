@@ -1,0 +1,57 @@
+\chapter{Running Visual Profiler}
+
+\section{Enabling profiling}
+Output assemblies of Visual Studio projects have to be profiling enabled before a profiling session. To make an assembly profiling enabled include the \linebreak\texttt{Install\textbackslash IncludeInProfiledProjects.cs}\footnote{The path is relative to the root directory of the enclosed DVD} file in the project of the assembly or paste its content in its \texttt{AssemblyInfo.cs} file. The \texttt{IncludeInProfiledProjects.cs} file contains definitions and usage of the custom \emph{VisualProfiler.ProfilingEnabledAttribute} attribute.
+
+\section{Running Visual Profiler}
+Examples in this section use the Mandelbrot testing application, which can be found in \texttt{Source\textbackslash Mandelbrot\textbackslash}\footnotemark[\value{footnote}].
+
+Before running Visual Profiler make sure that at least one assembly is profiling enabled in order to see some output.
+
+To run Visual Profile take following steps:
+\begin{enumerate}
+\item set the startup project of your solution to either a console or a windows application project and to x86 platform target
+
+\item select a profiling mode in the \textbf{Tools} menu
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.3]{\imagePathAppx 04BeforeRunning.png}
+		\caption{Visual Profiler - before running}
+	\label{fig:0904BeforeRunning}
+\end{figure}
+
+\item the startup project builds and a profiling session starts
+
+\item to stop the profiling session go to the \textbf{Tools} menu and select the \textbf{Stop Visual Profiler} menu
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.3]{\imagePathAppx 06Stopping.png}
+		\caption{Visual Profiler - stopping a profiler session}
+	\label{fig:0906Stopping}
+\end{figure}
+
+\end{enumerate}
+
+
+\section{Screenshots}
+We include screenshots of the Mandelbrot testing application running under the profiler. The first screenshot \ref{fig:0905Running} shows the source code coloring and the tool window with the profiling results
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.3]{\imagePathAppx 05Running.png}
+		\caption{Visual Profiler - profiling the Mandelbrot testing application}
+	\label{fig:0905Running}
+\end{figure}
+
+The second screenshot \ref{fig:0907LayoutCorruption} shows the ``mysterious'' error in layout of the code coloring. Notice how the coloring moved down and it does not align with method bodies. 
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[scale=0.3]{\imagePathAppx 07LayoutCorruption.png}
+		\caption{The layout error - the code coloring does not align with method bodies }
+	\label{fig:0907LayoutCorruption}
+\end{figure}
+
+

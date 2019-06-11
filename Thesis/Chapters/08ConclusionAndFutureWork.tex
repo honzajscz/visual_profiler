@@ -1,0 +1,65 @@
+\chapter{Conclusion and Future Work}
+
+After the thorough initial analysis of profiling modes, granularity and the currently available profilers for .NET platform, we chose to implement tracing and sampling profilers with method-level granularity. The nature of the tracing and sampling profilers is very different. The tracing profiler provides exact information about runtime conditions but slows down profiled applications, whereas the sampling profiler shows only statistical representation of the runtime conditions, but with very low overhead.
+
+We used the Profiling API as a starting point to implement both profilers. The Profiling API exposes a rich set of interfaces to interact with the CLR\footnote{Common Language Runtime - .NET runtime environment} and to monitor its activity, allowing observing method calls, performing snapshots of thread call stack and querying runtime metadata.
+
+The Profiling API interfaces require their implementers to expose functionality via COM interfaces and to be written as an unmanaged component\footnote{not using CLR as a runtime platform}. Therefore, a profiler backend, responsible for collecting profiling data, was implemented in C++ programming language. Both, the tracing and the sampling profilers, use tree structures to store profiling data, such as number and order of method calls, duration of methods, occurrence of a method on top of a call stack and others.
+
+The profiling backend, the Visual Profiler Backend, is loaded by the CLR at program's start time (it may also be attached later -- not implemented) and runs as a part of the profiled process. For the performance reasons, it is strongly recommended to process the profiling data in other process than the profiled one. Therefore, the profiler backend sends the measured data via IPC\footnote{Inter-process communication - named pipes in our case}  to a frontend component periodically. The frontend component, the Visual Profiler Access, processes the data and displays it in a UI component, the Visual Profiler UI. 
+
+Besides receiving the profiling data, the Visual Profiler Access is a managed gateway to the profiler. It is responsible for initiating a profiling session, and the IPC and for notifying of newly acquired data from the profiler. It also maps data from the profiler backend to source code files using information in PDB files\footnote{Program database file} created during compilation of the profiled process.
+
+The visual presentation of results takes place in the Visual Profiler UI. The UI hooks to the Visual Profiler Access and waits for data to come. Upon the data acceptance, the UI combines and processes the received call trees and metadata to form a source code aware view of runtime conditions in the profiled process. The UI is built in WPF\footnote{Windows Presentation Foundation} combined with the Visual Studio 2010 extensibility model. 
+
+The code was tested for correctness by a set of unit tests and manual testing. A performance evaluation showed results of a comparison of the profiling
+modes. The sampling mode is clearly faster and its overhead is stable, regardless of call tree structure of a profiled application. Whereas, the tracing profiler provides more precise data with volatile overhead in terms of the call tree structure of the profiler application.
+
+The final implementation of the Visual Profiler does not outrun the currently available profilers. The provided set of features is limited and serves more as a proof of concept. The performance and accuracy may be well comparable, though. Its main contributions are its integration into Visual Studio 2010 IDE and the innovative way of displaying profiling results during development-time profiling.
+
+To become a fully-fledged profiler, the Visual Profiler has to add few features and overcome some limitations such as to
+enable 64-bit application profiling,
+to target more application platforms (web-apps, windows services, phones, Silverlight-apps...),
+to add remote profiling,
+to improve UX\footnote{User eXperience} by implementing saving and comparing results of different profiling sessions, to focus on navigation in results,
+to enhance accuracy and speed of profiling and others.
+
+There are still some unresolved issues in the final version of the profiler regarding partial UI instability of the code coloring and the impact of the assembly filtering on results. We are aware of these issues. However, we did not have sufficient capacity to resolve them and thus we delegate them to future work.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+HKCR
+{
+	VisualProfiler.TracingProfiler.1 = s 'TracingProfiler Class'
+	{
+		CLSID = s '{19840906-C001-0000-000C-000000000002}'
+	}
+	VisualProfiler.TracingProfiler = s 'TracingProfiler Class'
+	{		
+		CurVer = s 'VisualProfiler.TracingProfiler.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {19840906-C001-0000-000C-000000000002} = s 'TracingProfiler Class'
+		{
+			ProgID = s 'VisualProfiler.TracingProfiler.1'
+			VersionIndependentProgID = s 'VisualProfiler.TracingProfiler'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			TypeLib = s '{19840906-C001-0000-000B-000000000000}'
+			Version = s '1.0'
+		}
+	}
+}

@@ -1,0 +1,23 @@
+\chapter{Source code}
+
+\section{Solutions and projects}
+You can find the source code in the \texttt{Source\textbackslash}\footnote{The path is relative to the root directory of the enclosed DVD} directory which contains three solutions
+\begin{itemize}
+
+\item \textbf{Visual Profiler} - the main solution, contains VisualProfileBackend, VisualProfilerAccess, VisualProfilerUI, VisualProfilerVSPackage and two test projects
+
+location: \texttt{Source\textbackslash VisualProfiler.sln}\footnotemark[\value{footnote}]
+
+\item \textbf{Mandelbrot} - the testing application, contains Mandelbrot and MandelbrotComp projects
+
+location: \texttt{Source\textbackslash Mandelbrot\textbackslash  Mandelbrot.sln}\footnotemark[\value{footnote}]
+
+\item \textbf{Metadata} - the Common Compiler Infrastructure Metadata API, contains projects for reading PDB files
+
+location: \texttt{Source\textbackslash Ccimetadata\textbackslash  Metadata.sln}\footnotemark[\value{footnote}]
+
+\end{itemize}
+
+\section{Dependencies}
+The \texttt{Source\textbackslash}\footnotemark[\value{footnote}] directory contains all required dependencies for the solutions. Therefore, the solution can be built in standard environment without any further modifications or installations. The only exceptions to this is the VisualProfilerVSPackage project, which requires Visual Studio 2010 Service Pack 1\footnote{\href{http://www.microsoft.com/download/en/details.aspx?id=23691}{http://www.microsoft.com/download/en/details.aspx?id=23691}} and Visual Studio 2010 SP1 SDK\footnote{\href{http://www.microsoft.com/download/en/details.aspx?id=21835}{http://www.microsoft.com/download/en/details.aspx?id=21835}} to be installed.
+

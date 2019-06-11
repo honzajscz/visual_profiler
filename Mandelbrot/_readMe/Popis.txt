@@ -1,0 +1,19 @@
+Rendrovani Mandelbrotovy mnoziny
+
+Moje aplikace je urcena na rendrovani fraktalu Mandelbrotovi mnoziny. (vice v prezenctaci)
+
+Hlavni vlastnosti:
+
+vice vlaknova aplikace - zamezeni zamrzani aplikace, rozdeleni vykonu
+Zoom in/out - zoomovani pomoci vyberu mysi, zoom out pomoci ikony
+souradnice - vypocet souradnic v komplexni rovine
+screenshot -  ulozeni vyrendrovaneho obrazku do obrazku na disku
+stop - zastaveni vsech vypodcetnich vlaken
+pohyb - pohyb pomoci sipek v rovine
+
+
+Ovladani:
+
+ikonky v aplikaci, sipky, zvetsovani vyberem pomoci mysi
+
+

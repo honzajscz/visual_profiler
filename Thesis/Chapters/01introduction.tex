@@ -1,0 +1,17 @@
+\chapter{Introduction}
+
+According the Pareto's law (also known as 80/20 rule) 80 percent of the results come from 20 percent of the effort \cite{RicKoch1999}. This law is applicable to software development. 80 percent of all end users generally use only 20 percent of a software application's features. Microsoft reported that 80 percent of errors and crashes in Windows and Office are caused by only 20 percent of bugs \cite{PauRoon2002}.
+
+We believe that the same principle applies to software performance as well. 80 percent of time is spent in 20 percent of code.  So, investing effort of programmers to the 20 percent of the code may have great effect on the overall performance of the code - if that 20 percent of the code could be discovered.
+
+Programmers are not particularly successful at guessing which part of the code is crucial for the performance \cite{SteMcCo2004}. Therefore profilers help to automate the search for bottlenecks and hotspots in applications and their source code and provide valuable metrics, such as execution times of specific part of code or memory usage of a given object. This thesis focuses mainly on performance profiling on the Microsoft .NET platform.
+
+The performance profiling dynamically analyzes execution behavior of a program. It tracks various runtime related data such as frequency and duration of function calls. Analysis and visualization of the gathered data provides useful hint on the program's code runtime characteristics and helps during optimization and exploration of the program.
+	
+Profiling can be achieved by various means as for instance by inserting tracing code into either the source code or the binary executable of the program or by runtime sampling of thread call stacks of the program or by listening to events invoked by a program's runtime engine.
+
+Each of aforementioned approaches differs in overhead imposed to the program and in type, precision and granularity of the gathered data.
+
+In the world of .NET performance profiling, there already are few full-fledged solutions targeting almost all .NET platforms from desktop to Windows Phone applications. However, they are mostly commercial and do not provide deep integration with development tools.  
+
+In this thesis, we will introduce a development-time .NET profiler offering various profiling methods and allowing direct interaction directly from the Microsoft Visual Studio 2010.
