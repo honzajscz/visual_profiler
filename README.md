@@ -28,12 +28,12 @@ Here is a link to the master thesis in pdf
 Assembler, C++, COM, Profiling API, Win32 API, Named pipes, .NET, C#, Ninject, Linq, NUnit, Moq, WPF, XAML, Visual Studio 2010 Extension API, VSIX packages, MEF…
 
 ## Repository Content
-- The **Install directory** contains the VSIX package for deploying the Visual Proler extension into Visual Studio 2010 and a C# file for enabling proling on assemblies.
+- The **Install directory**contains the VSIX package for deploying the Visual Profiler extension into Visual Studio 2010 and a C# file for enabling profiling on assemblies.
 - The **Source directory** contains the source code of this thesis, its dependencies and the Mandelbrot testing application.
 There are three solutions:
-  - **VisualProfiler.sln** - the main solution, contains VisualProfilerBackend, VisualProfilerAccess, VisualProlerUI
+  - **VisualProfiler.sln** - the main solution, contains VisualProfilerBackend, VisualProfilerAccess, VisualProfilerUI
   - **Mandlerbrot\Mandelbrot.sln** - the testing application, contains Mandelbrot and MandelbrotComp
 projects
-  - **Ccimetadata\Metadata.sln** - the Common Compiler Infrastructure Metadata API, contains projects for reading PDB files
+  - **Ccimetadata\Metadata.sln** - the Common Compiler Infrastructure Metadata API, contains projects for reading PDB files
 
 - The **Thesis directory** contains the PDF document of this thesis.
