@@ -23,7 +23,17 @@ Here is a link to the master thesis in pdf
 - [Master thesis in pdf in English](Thesis/thesis.pdf)
 - [Final presentation in PDF in Czech](Thesis/Presentation/Výkonové%20profilování%20na%20platformě.pdf)
 - [Final presentation in PPTX in Czech](Thesis/Presentation/Výkonové%20profilování%20na%20platformě.pptx)
-[Intro.pdf](http://USERNAME.github.io/REPONAME/docs/Intro.pdf)
 
-## Used technologies and Frameworks
+## Used Technologies and Frameworks
 Assembler, C++, COM, Profiling API, Win32 API, Named pipes, .NET, C#, Ninject, Linq, NUnit, Moq, WPF, XAML, Visual Studio 2010 Extension API, VSIX packages, MEF…
+
+## Repository Content
+- The **Install directory** contains the VSIX package for deploying the Visual Proler extension into Visual Studio 2010 and a C# file for enabling proling on assemblies.
+- The **Source directory** contains the source code of this thesis, its dependencies and the Mandelbrot testing application.
+There are three solutions:
+  - **VisualProfiler.sln** - the main solution, contains VisualProfilerBackend, VisualProfilerAccess, VisualProlerUI
+  - **Mandlerbrot\Mandelbrot.sln** - the testing application, contains Mandelbrot and MandelbrotComp
+projects
+  - **Ccimetadata\Metadata.sln** - the Common Compiler Infrastructure Metadata API, contains projects for reading PDB files
+
+- The **Thesis directory** contains the PDF document of this thesis.
