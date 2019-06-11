@@ -19,7 +19,7 @@ The performance profiling is a powerful way how to get a valuable insight into s
   
 
 ## Detailed Description and Presentation
-Here is a link to the master thesis in pdf
+Here are links to the master thesis and its presentation
 - [Master thesis in pdf in English](Thesis/thesis.pdf)
 - [Final presentation in PDF in Czech](Thesis/Presentation/Výkonové%20profilování%20na%20platformě.pdf)
 - [Final presentation in PPTX in Czech](Thesis/Presentation/Výkonové%20profilování%20na%20platformě.pptx)
